@@ -12,8 +12,9 @@ public class MaiorPosicaoEx1080 {
 }
 
 class InterfaceTexto {
-    private final Scanner entrada;
-    private final MaiorValor numero;
+    private Scanner entrada;
+    private MaiorValor numero;
+    private int tamanho = 100;
 
     public InterfaceTexto() {
         entrada = new Scanner(System.in);
@@ -21,9 +22,8 @@ class InterfaceTexto {
     }
 
     public void entradaDados() {
-        for (int i = 1; i <= 100; i++) {
-            numero.setAuxiliar(i);
-            numero.setValor(entrada.nextInt());
+        for (int i = 1; i <= tamanho; i++) {
+            numero.setValor(entrada.nextInt(), i);
         }
         System.out.printf("%d\n%d\n", numero.getValor(), numero.getPosicao());
     }
@@ -32,16 +32,12 @@ class InterfaceTexto {
 
 class MaiorValor {
 
-    private int valor, posicao, auxiliar;
+    private int valor, posicao;
 
-    public void setAuxiliar(int auxiliar) {
-        this.auxiliar = auxiliar;
-    }
-
-    public void setValor(int valor) {
+    public void setValor(int valor, int posicao) {
         if (valor > this.valor) {
             this.valor = valor;
-            posicao = auxiliar;
+            this.posicao = posicao;
         }
     }
 

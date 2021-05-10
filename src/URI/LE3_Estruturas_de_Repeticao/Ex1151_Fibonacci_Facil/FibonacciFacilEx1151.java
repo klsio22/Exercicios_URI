@@ -12,8 +12,8 @@ public class FibonacciFacilEx1151 {
 }
 
 class InterfaceTexto {
-    private final Scanner entrada;
-    private final Fibonacci valores;
+    private Scanner entrada;
+    private Fibonacci valores;
 
     public InterfaceTexto() {
         entrada = new Scanner(System.in);
