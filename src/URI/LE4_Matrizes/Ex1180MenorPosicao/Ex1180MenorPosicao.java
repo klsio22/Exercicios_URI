@@ -8,6 +8,7 @@ public class Ex1180MenorPosicao {
     public static void main(String[] args) throws IOException {
         InterfaceTexto vetor = new InterfaceTexto();
         vetor.entradaDados();
+        vetor.saidaDados();
     }
 }
 
@@ -23,7 +24,9 @@ class InterfaceTexto {
     public void entradaDados() {
         for (int i = 0; i < vetor.getValor().length; i++)
             vetor.setValor(entrada.nextInt(), i);
+    }
 
+    public void saidaDados() {
         System.out.printf("Menor valor: %d\n", vetor.getMenorValor());
         System.out.printf("Posicao: %d\n", vetor.getPosicaoMenor());
     }

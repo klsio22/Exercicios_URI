@@ -1,5 +1,6 @@
 package URI.BaseIOO;
 //KLESIO ANTONIO DO NASCIMENTO
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -7,6 +8,7 @@ public class BaseIOO {
     public static void main(String[] args) throws IOException {
         InterfaceTexto obj = new InterfaceTexto();
         obj.entradaDados();
+        obj.saidaDados();
     }
 }
 
@@ -21,6 +23,9 @@ class InterfaceTexto {
 
     public void entradaDados() {
         nomeDaIntaciaClasse.setX(entrada.nextInt());
+    }
+
+    public void saidaDados() {
         System.out.println(nomeDaIntaciaClasse.getRetornarString());
     }
 }
@@ -32,7 +37,7 @@ class NomeDaIntaciaObjeto {
         this.x = x;
     }
 
-    public String getRetornarString(){
-        return"";
+    public String getRetornarString() {
+        return "";
     }
 }
