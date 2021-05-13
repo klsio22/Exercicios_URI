@@ -2,6 +2,7 @@ package URI.LE4_Matrizes.Ex1174_Selecao_de_vetor;
 //Klésio Antônio do Nascimento
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -14,8 +15,10 @@ public class Ex1174SelecaoDeVetor {
 }
 
 class InterfaceTexto {
+    private final int TAMANHO = 5;
     private Scanner entrada;
     private Vetor vetor;
+    private Numero numero;
 
     public InterfaceTexto() {
         entrada = new Scanner(System.in);
@@ -28,29 +31,38 @@ class InterfaceTexto {
     }
 
     private void entradaDados() {
-        for (int i = 0; i < vetor.getValor().length; i++) {
-            vetor.setValor(entrada.nextDouble(), i);
+        for (int i = 0; i < TAMANHO; i++) {
+            vetor.adicionarValor(i, entrada.nextDouble());
         }
     }
 
     private void saidaDados() {
-        for (int i = 0; i < vetor.getValor().length; i++)
-            if (vetor.getValor()[i] <= 10)
-                System.out.printf("A[%d] = %.1f\n", i, vetor.getValor()[i]);
+        for (int i = 0; i < vetor.getVetor().size(); i++)
+            System.out.printf("A[%d] = %.1f\n", i, vetor.getVetor().get(i));
     }
 
 }
 
+class Numero {
+    private int posicao;
+    private double valor;
+
+    public Numero(int i, double valor) {
+        this.posicao = i;
+        this.valor = valor;
+    }
+}
+
 class Vetor {
-    private final int TAMANHO = 100;
-    private double[] valor = new double[TAMANHO];
+    private ArrayList<Numero> vetor = new ArrayList();
 
-    public void setValor(double valor, int posicao) {
-        this.valor[posicao] = valor;
+    public void adicionarValor(int i, double valor) {
+        if (valor <= 10) {
+            vetor.add(new Numero(i, valor));
+        }
     }
 
-    public double[] getValor() {
-        return valor;
+    public ArrayList<Numero> getVetor() {
+        return vetor;
     }
-
 }

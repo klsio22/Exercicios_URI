@@ -6,9 +6,8 @@ import java.util.Scanner;
 
 public class Ex1180MenorPosicao {
     public static void main(String[] args) throws IOException {
-        InterfaceTexto vetor = new InterfaceTexto();
-        vetor.entradaDados();
-        vetor.saidaDados();
+        InterfaceTexto it = new InterfaceTexto();
+        it.executar();
     }
 }
 
@@ -19,6 +18,11 @@ class InterfaceTexto {
     public InterfaceTexto() {
         entrada = new Scanner(System.in);
         vetor = new MenorValor(entrada.nextInt());
+    }
+
+    public void executar(){
+        entradaDados();
+        saidaDados();
     }
 
     public void entradaDados() {
@@ -37,7 +41,7 @@ class MenorValor {
     private int valor[];
 
     public MenorValor(int tamanho) {
-        setMenorValor(10000000);
+        setMenorValor(10000);
         setPosicaoMenor(0);
         valor = new int[tamanho];
     }
