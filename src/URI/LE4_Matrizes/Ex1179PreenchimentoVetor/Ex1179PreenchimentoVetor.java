@@ -6,102 +6,104 @@ import java.util.Scanner;
 
 public class Ex1179PreenchimentoVetor {
     public static void main(String[] args) throws IOException {
-        InterfaceTexto vetor = new InterfaceTexto();
-        vetor.entradaDados();
-        vetor.saidaDados();
+        InterfaceTexto it = new InterfaceTexto();
+        it.executar();
     }
 }
 
 class InterfaceTexto {
     private Scanner entrada;
-    private ParImpar valor;
+    private Vetor vetor;
 
     public InterfaceTexto() {
         entrada = new Scanner(System.in);
-        valor = new ParImpar();
+        vetor = new Vetor();
     }
 
-    public void entradaDados() {
+    public void executar() {
+        entradaDados();
+    }
+
+    private void entradaDados() {
         for (int i = 0; i < 15; i++) {
-            valor.setValor(entrada.nextInt());
+            vetor.adiciona(entrada.nextInt());
+
+            if (vetor.paresEstaCheio())
+                imprimirPares();
+
+            if (vetor.imparesEstaCheio())
+                imprimirImpares();
         }
 
+        imprimirImpares();
+        imprimirPares();
     }
 
-    public void saidaDados() {
-        for (int i = 0; i < valor.getQuantidade(); i++)
-            System.out.printf("%s [%d] = %d\n", valor.getNome(), i, valor.getVetor()[i]);
+    public void imprimirPares() {
+        for (int i = 0; i < vetor.getQuantidadePares(); i++)
+            System.out.printf("par[%d] = %d\n", i, vetor.getPares()[i]);
+    }
+
+    public void imprimirImpares() {
+        for (int i = 0; i < vetor.getQuantidadeImpares(); i++)
+            System.out.printf("impar[%d] = %d\n", i, vetor.getImpares()[i]);
     }
 
 }
 
-class ParImpar {
+class Vetor {
     private int tamanho = 5;
-    private int[] par = new int[tamanho];
-    private int[] impar = new int[tamanho];
-    private int contPar, contImapar;
+    private int[] pares = new int[tamanho];
+    private int[] impares = new int[tamanho];
+    private int contadorPares, contadorImpares;
+    private int quantidadePares, quantidadeImpares;
 
-    private int[] vetor;
-    private String nome;
-    private int quantidade;
-
-    public void setValor(int valor) {
+    public void adiciona(int valor) {
 
         if (valor % 2 == 0) {
-            par[contPar++] = valor;
-            if (contPar == par.length) {
-                setDadosVetor(par, "par", contPar);
-                contPar = 0;
-            }
-
+            pares[contadorPares++] = valor;
+            setQuantidadePares(contadorPares);
+            paresEstaCheio();
         } else {
-            impar[contImapar++] = valor;
-            if (contImapar == impar.length) {
-                setDadosVetor(impar, "impar", contImapar);
-                contImapar = 0;
-            }
+            impares[contadorImpares++] = valor;
+            setQuantidadeImpares(contadorImpares);
+                imparesEstaCheio();
+
         }
 
-        if (contImapar != 0)
-            setDadosVetor(impar, "impar", contImapar);
-
-
-        if (contPar != 0)
-            setDadosVetor(par, "par", contPar);
-
-
     }
 
-    private void setDadosVetor(int[] vetor, String nome, int quantidade) {
-        setVetor(vetor);
-        setNome(nome);
-        setQuantidade(quantidade);
+    public boolean paresEstaCheio() {
+        return contadorPares == pares.length;
     }
 
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    public boolean imparesEstaCheio() {
+        return contadorImpares == impares.length;
     }
 
-    public void setVetor(int[] vetor) {
-        this.vetor = vetor;
+    private void setQuantidadeImpares(int quantidadeImpares) {
+        this.quantidadeImpares = quantidadeImpares;
     }
 
-    public String getNome() {
-        return nome;
+    private void setQuantidadePares(int quantidadePares) {
+        this.quantidadePares = quantidadePares;
     }
 
-    public int getQuantidade() {
-        return quantidade;
+    public int getQuantidadePares() {
+        return quantidadePares;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public int getQuantidadeImpares() {
+        return quantidadeImpares;
     }
 
-    public int[] getVetor() {
-        return vetor;
+    public int[] getPares() {
+        contadorPares = 0;
+        return pares;
     }
 
+    public int[] getImpares() {
+        contadorImpares = 0;
+        return impares;
+    }
 }
-

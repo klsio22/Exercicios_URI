@@ -30,40 +30,49 @@ class InterfaceTexto {
             }
     }
 
+    private void imprimirSoma() {
+        System.out.printf("%.1f\n", matriz.getSoma());
+    }
+
+    private void imprimirMedia() {
+        System.out.printf("%.1f\n", matriz.getMedia());
+    }
+
     public void executar() {
         char opcao = entrada.next().toUpperCase().charAt(0);
 
         if (opcao == 'S') {
             entrada();
-            System.out.printf("%.1f\n", matriz.getSoma());
+            imprimirSoma();
         }
 
         if (opcao == 'M') {
             entrada();
-            System.out.printf("%.1f\n", matriz.getMedia());
+            imprimirMedia();
         }
     }
+
 }
 
 class Matriz {
+    private final int TAMALHO = 12;
     private double soma;
-    private double[][] matriz = new double[12][12];
+    private double[][] matriz = new double[TAMALHO][TAMALHO];
 
     public void adicionarValores(double valor, int linha, int coluna) {
         matriz[linha][coluna] = valor;
     }
 
-    public double getMedia() {
-        return getSoma() / ((144.0 - 12) / 2);
+    public double getSoma() {
+        for (int i = 0; i < TAMALHO; i++)
+            for (int j = 0; j < i; j++) {
+                    soma += matriz[i][j];
+            }
+        return soma;
     }
 
-    public double getSoma() {
-        for (int i = 0; i < matriz.length; i++)
-            for (int j = i + 1; j < matriz[i].length; j++) {
-                soma += matriz[i][j];
-            }
-
-        return soma;
+    public double getMedia() {
+        return getSoma() / ((TAMALHO * TAMALHO - TAMALHO) / 2.0);
     }
 
     public double[][] getMatriz() {

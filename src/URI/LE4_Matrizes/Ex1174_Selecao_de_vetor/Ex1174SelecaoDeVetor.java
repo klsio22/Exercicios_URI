@@ -15,14 +15,13 @@ public class Ex1174SelecaoDeVetor {
 }
 
 class InterfaceTexto {
-    private final int TAMANHO = 5;
+    private final int TAMANHO = 100;
     private Scanner entrada;
-    private Vetor vetor;
-    private Numero numero;
+    private Valores valor;
 
     public InterfaceTexto() {
         entrada = new Scanner(System.in);
-        vetor = new Vetor();
+        valor = new Valores();
     }
 
     public void executar() {
@@ -32,15 +31,16 @@ class InterfaceTexto {
 
     private void entradaDados() {
         for (int i = 0; i < TAMANHO; i++) {
-            vetor.adicionarValor(i, entrada.nextDouble());
+            valor.adicionarValor(i, entrada.nextDouble());
         }
     }
 
     private void saidaDados() {
-        for (int i = 0; i < vetor.getVetor().size(); i++)
-            System.out.printf("A[%d] = %.1f\n", i, vetor.getVetor().get(i));
+        ArrayList<Numero> numeros = valor.getValores();
+        for (Numero numero : numeros) {
+            System.out.printf("A[%d] = %.1f\n", numero.getPosicao(), numero.getValor());
+        }
     }
-
 }
 
 class Numero {
@@ -51,18 +51,26 @@ class Numero {
         this.posicao = i;
         this.valor = valor;
     }
+
+    public int getPosicao() {
+        return posicao;
+    }
+
+    public double getValor() {
+        return valor;
+    }
 }
 
-class Vetor {
-    private ArrayList<Numero> vetor = new ArrayList();
+class Valores {
+    private ArrayList<Numero> valores = new ArrayList();
 
     public void adicionarValor(int i, double valor) {
         if (valor <= 10) {
-            vetor.add(new Numero(i, valor));
+            valores.add(new Numero(i, valor));
         }
     }
 
-    public ArrayList<Numero> getVetor() {
-        return vetor;
+    public ArrayList<Numero> getValores() {
+        return valores;
     }
 }
