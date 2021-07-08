@@ -1,4 +1,4 @@
-package URI.LE4_Matrizes.Ex1175_Troca_em_vetor_i;
+package URI.LE4_Matrizes.Ex1175_Troca_em_vetor_I;
 //Klésio Antônio do Nascimento
 
 import java.io.IOException;
@@ -38,8 +38,8 @@ class InterfaceTexto {
 }
 
 class Vetor {
-    private final int tamanho = 20;
-    private int[] valor = new int[tamanho];
+    private final int TAMANHO = 20;
+    private int[] valor = new int[TAMANHO];
     int indexFinal = valor.length - 1;
 
     public void adicionaValor(int valor, int posicao) {

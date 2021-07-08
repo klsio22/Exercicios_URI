@@ -8,13 +8,13 @@ public class ex1018 {
 
         Scanner ent = new Scanner(System.in);
         int n = ent.nextInt() , valor = n;
-        int cem , cinq , vinte , dez , cinco , dois ,um;
+        int cem , cinquenta , vinte , dez , cinco , dois ,um;
 
         if (0 < n && n <1000000) {
             cem = n / 100;
             n = n % 100;
 
-            cinq = n / 50;
+            cinquenta = n / 50;
             n = n % 50;
 
             vinte = n / 20;
@@ -38,7 +38,7 @@ public class ex1018 {
                     "%d nota(s) de R$ 10,00\n" +
                     "%d nota(s) de R$ 5,00\n" +
                     "%d nota(s) de R$ 2,00\n" +
-                    "%d nota(s) de R$ 1,00\n", valor, cem, cinq,
+                    "%d nota(s) de R$ 1,00\n", valor, cem, cinquenta,
                     vinte, dez, cinco, dois, um);
         }
     }

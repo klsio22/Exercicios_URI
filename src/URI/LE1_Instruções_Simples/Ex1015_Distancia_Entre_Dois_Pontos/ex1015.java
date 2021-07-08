@@ -14,7 +14,7 @@ public class ex1015 {
         double x2 = ent.nextDouble() , y2 = ent.nextDouble(),
                 distancia = 0;
 
-        distancia = Math.sqrt(Math.pow((x2-x1 ), 2)+ Math.pow((y2-y1), 2));
+        distancia = Math.sqrt(Math.pow((x2-x1 ), 2) + Math.pow((y2-y1), 2));
         System.out.printf("%.4f\n",distancia);
         ent.close();
     }

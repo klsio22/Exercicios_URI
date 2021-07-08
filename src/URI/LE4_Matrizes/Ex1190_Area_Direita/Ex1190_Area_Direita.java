@@ -1,11 +1,10 @@
-package URI.LE4_Matrizes.Ex1184_Abaixo_Da_Diagonal_principal;
-//Klésio Antônio do Nascimento
+package URI.LE4_Matrizes.Ex1190_Area_Direita;
 
 import java.io.IOException;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class Ex1184AbaixoDaDiagonalPrincipal {
+public class Ex1190_Area_Direita {
     public static void main(String[] args) throws IOException {
         Locale.setDefault(Locale.US);
         InterfaceTexto inteface = new InterfaceTexto();
@@ -14,13 +13,12 @@ public class Ex1184AbaixoDaDiagonalPrincipal {
 
 }
 
+
 class InterfaceTexto {
     private Scanner entrada;
     private Matriz matriz;
-
     public InterfaceTexto() {
         entrada = new Scanner(System.in);
-        matriz = new Matriz();
     }
 
     private void entrada() {
@@ -55,7 +53,7 @@ class InterfaceTexto {
 }
 
 class Matriz {
-    private final int TAMALHO = 12;
+    private final int TAMALHO = 5;
     private double soma;
     private double[][] matriz = new double[TAMALHO][TAMALHO];
 
@@ -64,20 +62,18 @@ class Matriz {
     }
 
     public double getSoma() {
-        for (int i = 0; i < 11; i++) {
-            if (i <= 5)
-                for (int j = 11; j > 11 - i; j--)
-                    soma += matriz[i][j];
-            else
-                for (int j = 11; j > i; j--)
-                    soma += matriz[i][j];
-        }
-
+        for (int i = 0; i < TAMALHO - 1; i++)
+            for (int j = 0; j < i; j++) {
+                soma += matriz[i][j];
+            }
         return soma;
     }
 
     public double getMedia() {
-        return getSoma() / ((TAMALHO * TAMALHO - TAMALHO) / 4.0);
+
+        return getSoma() / ((TAMALHO * TAMALHO - TAMALHO) / 2.0);
+
+
     }
 
     public double[][] getMatriz() {

@@ -8,16 +8,16 @@ import java.util.Scanner;
 public class Ex1038 {
     public static void main(String[] args) throws IOException {
         Locale.setDefault(Locale.US);
-        Interfacetexto obj = new Interfacetexto();
+        InterfaceTexto obj = new InterfaceTexto();
         obj.EntradaDados();
     }
 }
 
-class Interfacetexto {
+class InterfaceTexto {
     private final Scanner entrada;
     private final Lanche comida;
 
-    public Interfacetexto() {
+    public InterfaceTexto() {
         entrada = new Scanner(System.in);
         comida = new Lanche();
     }

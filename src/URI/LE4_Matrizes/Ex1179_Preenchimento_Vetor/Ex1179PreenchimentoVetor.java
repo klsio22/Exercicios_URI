@@ -1,4 +1,4 @@
-package URI.LE4_Matrizes.Ex1179PreenchimentoVetor;
+package URI.LE4_Matrizes.Ex1179_Preenchimento_Vetor;
 //Klésio Antônio do Nascimento
 
 import java.io.IOException;

@@ -7,8 +7,7 @@ import java.util.Scanner;
 public class BaseIOO {
     public static void main(String[] args) throws IOException {
         InterfaceTexto obj = new InterfaceTexto();
-        obj.entradaDados();
-        obj.saidaDados();
+        obj.executar();
     }
 }
 
@@ -21,13 +20,20 @@ class InterfaceTexto {
         nomeDaIntaciaClasse = new NomeDaIntaciaObjeto();
     }
 
-    public void entradaDados() {
+    private void entradaDados() {
         nomeDaIntaciaClasse.setX(entrada.nextInt());
     }
 
-    public void saidaDados() {
+    private void saidaDados() {
         System.out.println(nomeDaIntaciaClasse.getRetornarString());
     }
+
+    public void executar() {
+        entradaDados();
+        saidaDados();
+    }
+
+
 }
 
 class NomeDaIntaciaObjeto {

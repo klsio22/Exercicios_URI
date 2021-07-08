@@ -9,8 +9,8 @@ public class ex1021 {
     public static void main(String[] args) throws IOException {
         Locale.setDefault(Locale.US);
         Scanner ent = new Scanner(System.in);
-        double n = ent.nextDouble() ;
-        int notas = (int) n , moedas = (int) ((n - notas) * 100.0);
+        double dinheiro = ent.nextDouble() ;
+        int notas = (int) dinheiro , moedas = (int) ((dinheiro - notas) * 100.0);
         int cemR , cinqR , vinteR , dezR , cincoR ,
                 doisR, umR,cinqCetavos, vinteCincoCentavos,
                 dezCentevos, cincoCentavos,umCentavo;

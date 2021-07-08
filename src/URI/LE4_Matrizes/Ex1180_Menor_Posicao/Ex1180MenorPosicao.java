@@ -1,4 +1,4 @@
-package URI.LE4_Matrizes.Ex1180MenorPosicao;
+package URI.LE4_Matrizes.Ex1180_Menor_Posicao;
 //Klésio Antônio do Nascimento
 
 import java.io.IOException;
