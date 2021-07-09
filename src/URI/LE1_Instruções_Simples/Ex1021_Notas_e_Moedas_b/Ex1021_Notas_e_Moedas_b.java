@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class Ex1021_Notas_e_Moedas_b {
+public class Ex1021_Notas_e_Moedas_b{
     public static void main(String[] args) throws IOException {
         Locale.setDefault(Locale.US);
         InterfaceTexto dinheiro = new InterfaceTexto();
@@ -37,23 +37,27 @@ class InterfaceTexto {
         List<Integer> cedulas = Arrays.asList(100, 50, 20, 10, 5, 2);
 
         System.out.printf("NOTAS: \n");
-        for (Integer notas : dinheiro.getQuantidadeNotas()) {
-            System.out.printf("%d nota(s) de %d", notas, cedulas);
-
+        for (Integer nota : dinheiro.getQuantidadeNotas()) {
+            System.out.printf("%d nota(s) de ", nota);
+            for (Integer cedula : cedulas) {
+                System.out.printf("R$ %d,00\n", cedula);
+            }
         }
 
-        for (int i = 0; i < cedulas.size(); i++) {
-            System.out.printf("%d nota(s) de %d", dinheiro.getQuantidadeNotas(), cedulas);
-        }
 
     }
+}
+
+class Monetario {
+
+
 }
 
 
 class ContadorDinheiro {
     private double valor;
     private ArrayList<Integer> quantidadeNotas = new ArrayList<>();
-
+    private ArrayList<Integer> quantidadeMoedas = new ArrayList<>();
     private int[] cedulas = {100, 50, 20, 10, 5, 2};
 
     public void setValor(double valor) {
@@ -71,14 +75,18 @@ class ContadorDinheiro {
     }
 
     public ArrayList<Integer> getQuantidadeMoedas() {
-        int notas = (int) valor;
-        int moedas = (int) ((valor - notas) * 100);
+        int centavos = (int) valor;
+        int moedas = (int) ((valor - centavos) * 100);
 
+        for (int i = 0; i < cedulas.length; i++) {
+            int moeda = 0;
+            moeda = moedas / cedulas[i];
+            moedas = moedas % cedulas[i];
 
+            quantidadeMoedas.add(moeda);
+        }
 
-
-        return quantidadeNotas;
+        return quantidadeMoedas;
     }
-
 
 }
