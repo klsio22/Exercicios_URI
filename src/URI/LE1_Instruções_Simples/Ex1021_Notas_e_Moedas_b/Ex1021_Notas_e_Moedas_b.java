@@ -15,112 +15,107 @@ public class Ex1021_Notas_e_Moedas_b {
 
 class InterfaceTexto {
     private Scanner entrada;
-    private ContadorDinheiro dinheiro;
+    private DivisorMonetario divisorMonetario;
 
     public InterfaceTexto() {
         entrada = new Scanner(System.in);
-        dinheiro = new ContadorDinheiro();
+        divisorMonetario = new DivisorMonetario();
     }
 
     public void executar() {
-        entradaDados();
-        saindaDados();
+        lerDados();
+        imprimirResultado();
     }
 
-    private void entradaDados() {
-        dinheiro.setValor(entrada.nextDouble());
+    private void lerDados() {
+        divisorMonetario.setValor(entrada.nextDouble());
     }
 
-    private void saindaDados() {
-        System.out.printf("NOTAS:\n");
-        for (Cedulas nota : dinheiro.getQuantidadeNotas()) {
-            if (nota.getValor() != 1)
-                System.out.printf("%d nota(s) de R$ %d.00\n",
-                        nota.getQuantidadeCedulas(), nota.getValor());
-            if (nota.getValor() == 1) {
-                System.out.printf("MOEDAS:\n");
-                System.out.printf("%d moeda(s) de R$ %d.00\n",
-                        nota.getQuantidadeCedulas(), nota.getValor());
-            }
+    private void imprimirResultado() {
+        System.out.println("NOTAS:");
+        for (Monetario cedula : divisorMonetario.getCedulas()) {
+            System.out.printf("%d nota(s) de R$ %.2f%n", cedula.getQuantidade(), cedula.getValor());
         }
 
-        for (Monetario moeda : dinheiro.getQuantidadeMoedas()) {
-            System.out.printf("%d moeda(s) de R$ %s\n",
-                    moeda.getQuantidadeMoeda(), moeda.getMoedas());
+        System.out.println("MOEDAS:");
+        for (Monetario cedula : divisorMonetario.getMoedas()) {
+            System.out.printf("%d nota(s) de R$ %.2f\n", cedula.getQuantidade(), cedula.getValor());
         }
-    }
-}
-
-class Cedulas {
-    private int quantidadeCedulas;
-    private int valor;
-
-    public Cedulas(int quantidadeCedulas, int valor) {
-        this.quantidadeCedulas = quantidadeCedulas;
-        this.valor = valor;
-    }
-
-    public int getValor() {
-        return valor;
-    }
-
-    public int getQuantidadeCedulas() {
-        return quantidadeCedulas;
     }
 }
 
 class Monetario {
-    private int quantidadeMoeda;
-    private String moedas;
-
-    public Monetario(int quantidadeMoeda, String moedas) {
-        this.quantidadeMoeda = quantidadeMoeda;
-        this.moedas = moedas;
-    }
-
-    public String getMoedas() {
-        return moedas;
-    }
-
-    public int getQuantidadeMoeda() {
-        return quantidadeMoeda;
-    }
-}
-
-class ContadorDinheiro {
+    private int quantidade;
     private double valor;
-    private ArrayList<Cedulas> quantidadeNotas = new ArrayList<>();
-    private ArrayList<Monetario> quantidadeMoedas = new ArrayList<>();
-    private int[] restoCedulas = {100, 50, 20, 10, 5, 2, 1};
-    private int[] restoMoedas = {50, 25, 10, 5, 1};
-    private String[] restoCentavos = {"0.50", "0.25", "0.10", "0.05", "0.01"};
 
-    public void setValor(double valor) {
+    public Monetario(int quantidade, double valor) {
+        this.quantidade = quantidade;
         this.valor = valor;
     }
 
-    public ArrayList<Cedulas> getQuantidadeNotas() {
-        for (int i = 0; i < restoCedulas.length; i++) {
-            int nota = 0;
-            nota = (int) valor / restoCedulas[i];
-            quantidadeNotas.add(new Cedulas(nota, restoCedulas[i]));
-            valor = valor % restoCedulas[i];
-
-        }
-        return quantidadeNotas;
+    public double getValor() {
+        return valor;
     }
 
-    public ArrayList<Monetario> getQuantidadeMoedas() {
-        int centavos = (int) valor;
-        int moedas = (int) ((valor - centavos) * 100);
+    public int getQuantidade() {
+        return quantidade;
+    }
+}
 
-        for (int i = 0; i < restoMoedas.length; i++) {
-            int moeda = 0;
-            moeda = moedas / restoMoedas[i];
-            quantidadeMoedas.add(new Monetario(moeda, restoCentavos[i]));
-            moedas = moedas % restoMoedas[i];
-        }
-        return quantidadeMoedas;
+class DivisorMonetario {
+
+    private double valor;
+    private double umReal;
+    private ArrayList<Monetario> cedulas = new ArrayList<>();
+    private ArrayList<Monetario> moedas = new ArrayList<>();
+
+    private static final int[] TIPOS_DE_CEDULAS = {100, 50, 20, 10, 5, 2, 1};
+    private static final double[] TIPOS_DE_MOEDAS = {0.50, 0.25, 0.10, 0.05, 0.01};
+
+
+    public void setValor(double valor) {
+        this.valor = valor;
+        calcularDivisaoMonetaria();
     }
 
+    public double getValor() {
+        return valor;
+    }
+
+    public ArrayList<Monetario> getCedulas() {
+        return cedulas;
+    }
+
+    public ArrayList<Monetario> getMoedas() {
+        return moedas;
+    }
+
+    public double getUmReal() {
+        return umReal;
+    }
+
+    private void calcularDivisaoMonetaria() {
+        cedulas.clear();
+        moedas.clear();
+        double valor = this.valor;
+
+        for (int cedula : TIPOS_DE_CEDULAS) {
+
+            int quantidade = (int) valor / cedula;
+            valor = valor % cedula;
+            cedulas.add(new Monetario(quantidade, cedula));
+        }
+
+
+        double moedaAjustado = (int) ((valor - (int) valor) * 100);
+
+        for (double moeda : TIPOS_DE_MOEDAS) {
+            moeda *= 100;
+
+            int quantidade = (int) (moedaAjustado / moeda);
+            moedaAjustado = moedaAjustado % moeda;
+            moedas.add(new Monetario(quantidade, moeda / 100));
+
+        }
+    }
 }
