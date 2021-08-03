@@ -1,13 +1,13 @@
 package URI.BaseIOO;
-//KLESIO ANTONIO DO NASCIMENTO
+//KLÉSIO ANTÔNIO DO NASCIMENTO
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public class BaseIOO {
     public static void main(String[] args) throws IOException {
-        InterfaceTexto obj = new InterfaceTexto();
-        obj.executar();
+        InterfaceTexto itf = new InterfaceTexto();
+        itf.executar();
     }
 }
 
