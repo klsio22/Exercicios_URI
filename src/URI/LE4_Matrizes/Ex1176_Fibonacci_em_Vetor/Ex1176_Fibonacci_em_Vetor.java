@@ -13,20 +13,20 @@ public class Ex1176_Fibonacci_em_Vetor {
 
 class InterfaceTexto {
     private Scanner entrada;
-    private Fibonacci quantidade;
+    private Fibonacci fibonacci;
 
     public InterfaceTexto() {
         entrada = new Scanner(System.in);
-        quantidade = new Fibonacci();
+        fibonacci = new Fibonacci();
     }
 
     public void executar() {
-        quantidade.setQuantidade(entrada.nextInt());
+        fibonacci.setQuantidade(entrada.nextInt());
 
-        for (int i = 0; i < quantidade.getQuantidade(); i++) {
+        for (int i = 0; i < fibonacci.getQuantidade(); i++) {
             int posicao = entrada.nextInt();
             System.out.printf("Fib(%d) = %d\n", posicao,
-                    quantidade.getNEssimoElemento()[posicao]);
+                    fibonacci.getNumeroNaPosicao()[posicao]);
         }
     }
 }
@@ -44,8 +44,8 @@ class Fibonacci {
         return quantidade;
     }
 
-    public long[] getNEssimoElemento() {
-        for (int i = 0; i <= (fibonacci.length-1); i++) {
+    public long[] getNumeroNaPosicao() {
+        for (int i = 0; i < (fibonacci.length - 1); i++) {
             if (i < 2)
                 fibonacci[i] = i;
             else
