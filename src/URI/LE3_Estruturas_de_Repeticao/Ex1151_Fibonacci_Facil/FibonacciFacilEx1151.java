@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class FibonacciFacilEx1151 {
     public static void main(String[] args) throws IOException {
-        InterfaceTexto obj = new InterfaceTexto();
-        obj.entradaDados();
+        InterfaceTexto it = new InterfaceTexto();
+        it.entradaDados();
     }
 }
 
@@ -49,4 +49,7 @@ class Fibonacci {
             return getFibonacci(n - 1) + getFibonacci(n - 2);
         }
     }
+
+
+
 }
